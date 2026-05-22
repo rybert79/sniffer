@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gacor-sniffer | Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Keren -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-12">
+
+    <!-- HEADER BAR -->
+    <header class="border-b border-slate-800 bg-slate-950/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 animate-pulse">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white">gacor-sniffer <span class="text-indigo-400 font-medium text-sm px-1.5 py-0.5 bg-indigo-500/10 rounded border border-indigo-500/20 ml-1">rybert</span></h1>
+                    <p class="text-xs text-slate-400">pemberatas Judol</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 text-xs bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    Engine DDGS & ThreadPool Active
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        
+        <!-- CARD RINGKASAN DATA (STATS) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <p class="text-sm font-medium text-slate-400">Total Situs Terpindai</p>
+                <p class="text-3xl font-bold text-white mt-2 mono">
+                    <!-- Gunakan logika Jinja2 Flask untuk total data jika ada, atau dihitung otomatis via js -->
+                    {{ suspects|length if suspects else 0 }}
+                </p>
+                <div class="text-xs text-slate-500 mt-2">Akumulasi domain dari radar otomatis</div>
+            </div>
+            
+            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <p class="text-sm font-medium text-slate-400">Tingkat Ancaman Tertinggi</p>
+                <p class="text-3xl font-bold text-rose-500 mt-2 mono">100%</p>
+                <div class="text-xs text-slate-500 mt-2">Indikasi kecocokan template mutlak</div>
+            </div>
+
+            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 shadow-xl">
+                <p class="text-sm font-medium text-slate-400">Kecepatan Engine</p>
+                <p class="text-3xl font-bold text-indigo-400 mt-2 mono">50 <span class="text-sm font-normal text-slate-400">th/s</span></p>
+                <div class="text-xs text-slate-500 mt-2">Kapasitas worker pararel maksimal</div>
+            </div>
+        </div>
+
+        <!-- TABEL UTAMA DATA ARCHIVE -->
+        <div class="bg-slate-950 rounded-2xl border border-slate-800 shadow-xl overflow-hidden">
+            <div class="px-6 py-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-base font-semibold text-white">Daftar Website Terindikasi (Suspects)</h3>
+                    <p class="text-xs text-slate-400 mt-1">Menampilkan domain internet yang memicu signature kecocokan kode</p>
+                </div>
+                <button onclick="window.location.reload();" class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 active:bg-slate-900 text-sm font-medium rounded-xl transition text-slate-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.253 8H18"></path></svg>
+                    Refresh Radar
+                </button>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900/50 text-xs font-semibold text-slate-400 border-b border-slate-800 uppercase tracking-wider">
+                            <th class="py-4 px-6">ID</th>
+                            <th class="py-4 px-6">Informasi Situs / Judul</th>
+                            <th class="py-4 px-6">Alamat URL (Domain)</th>
+                            <th class="py-4 px-6 text-center">Confidence Score</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-sm">
+                        {% if suspects %}
+                            {% for suspect in suspects %}
+                            <tr class="hover:bg-slate-900/30 transition">
+                                <td class="py-4 px-6 font-medium text-slate-500 mono">#{{ loop.index }}</td>
+                                <td class="py-4 px-6">
+                                    <div class="font-semibold text-slate-200 max-w-xs truncate">{{ suspect[2] }}</div>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <a href="{{ suspect[1] }}" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium truncate inline-flex items-center gap-1 group mono">
+                                        {{ suspect[1] }}
+                                        <svg class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <!-- Progress Bar Indikator Bahaya -->
+                                        <div class="w-24 bg-slate-800 rounded-full h-1.5 overflow-hidden hidden sm:block">
+                                            {% if suspect[3] >= 70 %}
+                                                <div class="bg-rose-500 h-1.5 rounded-full" style="width: {{ suspect[3] }}%"></div>
+                                            {% elif suspect[3] >= 50 %}
+                                                <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ suspect[3] }}%"></div>
+                                            {% else %}
+                                                <div class="bg-indigo-500 h-1.5 rounded-full" style="width: {{ suspect[3] }}%"></div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <!-- Badge Angka -->
+                                        {% if suspect[3] >= 70 %}
+                                            <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20 mono w-14 text-center">{{ suspect[3] }}%</span>
+                                        {% elif suspect[3] >= 50 %}
+                                            <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 mono w-14 text-center">{{ suspect[3] }}%</span>
+                                        {% else %}
+                                            <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mono w-14 text-center">{{ suspect[3] }}%</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="py-12 text-center text-slate-500">
+                                    <div class="flex flex-col items-center justify-center gap-2">
+                                        <svg class="w-8 h-8 text-slate-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                                        <p class="text-sm">Belum ada situs yang terdeteksi.</p>
+                                        <p class="text-xs text-slate-600">Jalankan bot siber turbo kamu untuk mengisi data.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-600 mt-12">
+        Proyek Alat Deteksi Otomatis judol — Dikembangkan oleh rybert untuk Hackathon Vinco(2026)
+    </footer>
+
+</body>
