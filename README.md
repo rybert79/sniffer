@@ -1,10 +1,10 @@
-# GACOR-SNIFFER
+# SNIFFER
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white) 
 ![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white) 
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white) 
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-GACOR-SNIFFER adalah sistem otomatisasi berbasis Python yang dirancang untuk mendeteksi, menganalisis, dan mengarsipkan replikasi template situs web mencurigakan (khususnya indikasi judi online) di internet secara *real-time*. Sistem ini mengintegrasikan mesin pencari publik untuk pengumpulan target secara dinamis dan memproses pemindaian massal menggunakan arsitektur *Multi-Threading*. Untuk menghindari penyalahgunaan, domain yang terdeteksi disamarkan secara otomatis pada dashboard publik. 
+SNIFFER adalah sistem otomatisasi berbasis Python yang dirancang untuk mendeteksi, menganalisis, dan mengarsipkan replikasi template situs web mencurigakan (khususnya indikasi judi online) di internet secara *real-time*. Sistem ini mengintegrasikan mesin pencari publik untuk pengumpulan target secara dinamis dan memproses pemindaian massal menggunakan arsitektur *Multi-Threading*. Untuk menghindari penyalahgunaan, domain yang terdeteksi disamarkan secara otomatis pada dashboard publik. 
 
 Proyek ini dikembangkan sebagai inovasi teknologi dalam mendukung Keamanan Siber pada **Hackathon vinco(2026)**.
 
