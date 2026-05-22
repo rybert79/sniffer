@@ -50,3 +50,15 @@ Pastikan sistem operasi Anda sudah terpasang Python 3.x. Jalankan perintah berik
 
 ```bash
 pip install requests beautifulsoup4 flask ddgs
+```
+
+jalankah perintah untuk membuat database
+
+```bash
+python database.py
+```
+lakukan pengambilan website
+
+```bash
+python collector.py
+```
